@@ -27,8 +27,23 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    
-    # get branch name
+    - name: Nastavení prostředí Node.js
+  používá: actions/setup-node@v2.1.2
+  s:
+    # Nastavit always-auth v npmrc
+    always-auth: # nepovinné, výchozí hodnota je false
+    # Verze Specifikace verze, která se má použít. Příklady: 12.x, 10.15.1,> = 10.15.0
+    verze uzlu: # nepovinné
+    # Tuto možnost nastavte, pokud chcete, aby akce zkontrolovala nejnovější dostupnou verzi, která vyhovuje specifikaci verze
+    check-latest: # nepovinné
+    # Volitelný registr pro nastavení ověřování Nastaví registr v souboru .npmrc a .yarnrc na úrovni projektu a nastaví ověřování pro čtení z env.NODE_AUTH_TOKEN
+    registry-url: # nepovinné
+    # Volitelný rozsah pro autentizaci proti registrům s rozsahem
+    rozsah: # nepovinné
+    # Slouží k načtení distribuce uzlů z verzí uzlů. Vzhledem k tomu, že existuje výchozí nastavení, toto obvykle uživatel nedodává.
+    token: # nepovinné, výchozí hodnota je $ {{github.token}}
+    # Zastaralé. Místo toho použijte verzi uzlu. Po 1. říjnu 2019 nebude podporováno
+    verze: # nepovinné    # get branch name
     - name: Get the current branch name
       shell: bash
       run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
